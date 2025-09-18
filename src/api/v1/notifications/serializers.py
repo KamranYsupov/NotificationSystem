@@ -4,6 +4,7 @@ from src.utils.validators import russian_phone_number_validator
 
 
 class ContactSerializer(serializers.Serializer):
+    message = serializers.CharField(max_length=200)
     email = serializers.EmailField()
     phone_number = serializers.CharField(max_length=15,)
 
