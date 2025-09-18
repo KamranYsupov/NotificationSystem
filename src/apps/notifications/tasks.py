@@ -31,7 +31,9 @@ def send_message_task(
             phone=phone_number,
             message=message,
         )
-        return 'SMS успешно отправлено'
+
+        if not 'error' in sms_response.text.lower():
+            return 'SMS успешно отправлено'
     except Exception:
         pass
 
