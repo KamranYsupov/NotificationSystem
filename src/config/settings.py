@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'api',
-    'app.notifications'
+    'apps.notifications'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +127,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
+REDIS_PORT = os.getenv('REDIS_PORT', 6379)
+REDIS_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}'
+
+CELERY_BROKER_URL = f'{REDIS_URL}/0'
+CELERY_RESULT_BACKEND =  f'{REDIS_URL}/1'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+TELEGRAM_API_URL = 'https://api.telegram.org'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')

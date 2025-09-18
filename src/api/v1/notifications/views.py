@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import ContactSerializer
-from src.apps.notifications.tasks import send_message_task
+from apps.notifications.tasks import send_message_task
 
 
 class SendNotificationView(APIView):
@@ -13,6 +13,7 @@ class SendNotificationView(APIView):
             send_message_task.delay(
                 email=serializer.data['email'],
                 phone_number=serializer.data['phone_number'],
+                telegram_id=serializer.data['telegram_id'],
                 message=serializer.data['message'],
             )
             return Response(serializer.data, status=status.HTTP_200_OK)
