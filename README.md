@@ -44,7 +44,7 @@ docker compose up --build -d
 ```commandline
 curl -X POST http://127.0.0.1/api/v1/notifications/send/ 
 -H "Content-Type: application/json" 
--d '{"message": "message", email": "example@example.com", "phone_number": "+79999999999", "telegram_id": 2312323}'
+-d '{"message": "Тест", email": "example@example.com", "phone_number": "+79999999999", "telegram_id": 2312323}'
 ```
 _Сообщения в Telegram не будут приходить, пока бот не активирован командой /start._
 
