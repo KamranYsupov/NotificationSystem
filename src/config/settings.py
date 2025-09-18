@@ -127,3 +127,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SMSC_LOGIN = os.getenv('SMSC_LOGIN')
+SMSC_PASSWORD = os.getenv('SMSC_PASSWORD')
+SMSC_SEND_API_URL = 'https://smsc.ru/sys/send.php'
